@@ -1,16 +1,28 @@
 import "./styles/App.scss";
-import colors from "./colors.js";
 import ButtonIcon from "./buttons/ButtonIcon";
 import ButtonText from "./buttons/ButtonText";
 import $ from "jquery";
 import { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
+import { quoteActions } from "./quoteSlice.js";
+
+export const colors = [
+  "#fb6964",
+  "#bdbb99",
+  "#16a085",
+  "#73a857",
+  "#2c3e50",
+  "#f39c12",
+  "#472e32",
+  "#9b59b6",
+  "#e74c3c"
+];
 
 const App = ({ index, content, author }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch({ type: "NEW_QUOTE" });
+    dispatch(quoteActions.new_quote());
   }
 
   // Quote and author fading
