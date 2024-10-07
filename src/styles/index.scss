@@ -1,0 +1,22 @@
+@import "transition";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color $transition;
+}
+
+#root {
+  width: 550px;
+  padding: 40px 50px;
+  border-radius: 4px;
+  background-color: white;
+}
