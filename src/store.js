@@ -1,5 +1,5 @@
-import { colorReducer } from "./colorSlice.js";
-import { quoteReducer } from "./quoteSlice.js";
+import { colorReducer } from './colorSlice.js';
+import { quoteReducer } from './quoteSlice.js';
 import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({

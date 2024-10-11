@@ -1,5 +1,5 @@
 import { colors } from './App.jsx';
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const generateRandomIndex = () => {
   return Math.floor(Math.random() * colors.length);
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const colorSlice = createSlice({
-  name: "color",
+  name: 'color',
   initialState,
   reducers: {
     new_color: (state) => {
