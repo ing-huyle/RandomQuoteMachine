@@ -13,7 +13,7 @@ const colorSlice = createSlice({
   name: 'color',
   initialState,
   reducers: {
-    new_color: (state) => {
+    setColor: (state) => {
       let i = generateRandomIndex();
       while (i === state.index) {
         i = generateRandomIndex();

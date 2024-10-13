@@ -27,7 +27,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(colorActions.new_color());
+    dispatch(colorActions.setColor());
   }
 
   useEffect(() => {
