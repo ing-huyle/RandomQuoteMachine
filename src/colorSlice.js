@@ -1,12 +1,16 @@
 import { colors } from './App.jsx';
 import { createSlice } from '@reduxjs/toolkit';
 
-const generateRandomIndex = () => {
-  return Math.floor(Math.random() * colors.length);
+const generateRandomColor = (excludeColor) => {
+  let newColor;
+  do {
+    newColor = colors[Math.floor(Math.random() * colors.length)];
+  } while (newColor === excludeColor);
+  return newColor;
 }
 
 const initialState = {
-  index: generateRandomIndex()
+  color: generateRandomColor('#000000')
 };
 
 const colorSlice = createSlice({
@@ -14,12 +18,7 @@ const colorSlice = createSlice({
   initialState,
   reducers: {
     setColor: (state) => {
-      let i = generateRandomIndex();
-      while (i === state.index) {
-        i = generateRandomIndex();
-      }
-
-      state.index = i;
+      state.color = generateRandomColor(state.color);
     }
   }
 });

@@ -20,7 +20,7 @@ export const colors = [
 ];
 
 const App = () => {
-  const index = useSelector((state) => state.color.index);
+  const color = useSelector((state) => state.color.color);
   const quote = useSelector((state) => state.quote);
   const quoteValue = quote.value;
   const author = quote.author;
@@ -33,6 +33,7 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchQuote());
     
+    $('body').css('background-color', color);
     $('#text').addClass('fade');
     $('#author').addClass('fade');
 
@@ -44,10 +45,7 @@ const App = () => {
     return () => {
       clearTimeout(timerFade);
     };
-  }, [index]);
-
-  let color = colors[index];
-  $('body').css('background-color', color);
+  }, [color]);
 
   return (
     <div id='quote-box'>    
