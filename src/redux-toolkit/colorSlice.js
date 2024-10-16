@@ -1,4 +1,4 @@
-import { colors } from './App.jsx';
+import { colors } from '../App.jsx';
 import { createSlice } from '@reduxjs/toolkit';
 
 const generateRandomColor = (excludeColor) => {

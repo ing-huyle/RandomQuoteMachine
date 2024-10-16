@@ -4,8 +4,8 @@ import ButtonText from './buttons/ButtonText';
 import $ from 'jquery';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { colorActions } from './colorSlice.js';
-import { fetchQuote } from './quoteSlice.js';
+import { colorActions } from './redux-toolkit/colorSlice.js';
+import { fetchQuote } from './redux-toolkit/quoteSlice.js';
 
 export const colors = [
   '#fb6964',
@@ -22,8 +22,7 @@ export const colors = [
 const App = () => {
   const color = useSelector((state) => state.color.color);
   const quote = useSelector((state) => state.quote);
-  const quoteValue = quote.value;
-  const author = quote.author;
+  const { quoteValue, author } = quote;
   const dispatch = useDispatch();
 
   const handleClick = () => {
