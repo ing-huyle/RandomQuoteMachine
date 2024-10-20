@@ -22,7 +22,7 @@ export const colors = [
 const App = () => {
   const color = useSelector((state) => state.color.color);
   const quote = useSelector((state) => state.quote);
-  const { quoteValue, author } = quote;
+  const { value, author } = quote;
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -50,20 +50,23 @@ const App = () => {
     <div id='quote-box'>    
       {/* {quote.loading && <div>Loading...</div>} */}
       {!quote.loading && quote.error ? <div>Error: {quote.error}</div> : null}
-      {!quote.error && quoteValue &&
+      {!quote.error && value &&
         <div>
-          <div id='text' style={{ color: color }}>{quoteValue}</div>
+          <div id='text' style={{ color: color }}>{value}</div>
           <div id='author' style={{ color: color }}>{author}</div>
           <div className='btn-row'>
             <ButtonIcon 
               color={color}
-              url={`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quoteValue}`}
+              url={`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${value}`}
               d='M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z'
             />
             <ButtonText color={color} text='New quote' onClick={handleClick} />
           </div>
         </div>
       }
+      <p>Coded by<a href='https://www.linkedin.com/in/ing-huyle' target='_blank'>ing.huyle</a><br/>
+        Designed by freeCodeCamp
+      </p>
     </div>
   );
 }
