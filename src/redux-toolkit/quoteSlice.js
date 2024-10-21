@@ -13,7 +13,10 @@ export const fetchQuote = createAsyncThunk('quote/fetchQuote', () => {
     .get('https://api.api-ninjas.com/v1/quotes', {
       headers: { 'X-Api-Key': `uuG8lwcXmp4I/mR0J2Yk6Q==0UX3cz7EFt25Afmj` }
     })
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 const quoteSlice = createSlice({
