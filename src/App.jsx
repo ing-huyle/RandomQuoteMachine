@@ -2,7 +2,7 @@ import './styles/App.scss';
 import ButtonIcon from './buttons/ButtonIcon';
 import ButtonText from './buttons/ButtonText';
 import $ from 'jquery';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { colorActions } from './redux-toolkit/colorSlice.js';
 import { fetchQuote } from './redux-toolkit/quoteSlice.js';
@@ -19,32 +19,49 @@ export const colors = [
   '#e74c3c'
 ];
 
+const generateRandomColor = (excludeColor) => {
+  let newColor;
+  do {
+    newColor = colors[Math.floor(Math.random() * colors.length)];
+  } while (newColor === excludeColor);
+  return newColor;
+}
+
+export const initialState = {
+  color: generateRandomColor('#000000')
+};
+
 const App = () => {
   const color = useSelector((state) => state.color.color);
   const quote = useSelector((state) => state.quote);
   const { value, author } = quote;
+  const timeoutRef = useRef(null);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(colorActions.setColor());
-  }
-
-  useEffect(() => {
-    dispatch(fetchQuote());
-    
+  const colorChanged = (color) => {
     $('body').css('background-color', color);
     $('#text').addClass('fade');
     $('#author').addClass('fade');
+    
+    dispatch(fetchQuote());
 
-    const timerFade = setTimeout(() => {
+    if (timeoutRef) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
       $('#text').removeClass('fade');
       $('#author').removeClass('fade');
     }, 1500);
+  }
 
-    return () => {
-      clearTimeout(timerFade);
-    };
-  }, [color]);
+  const handleClick = () => {
+    const newColor = generateRandomColor(color);
+    dispatch(colorActions.setColor(newColor));
+    colorChanged(newColor);
+  }
+
+  useEffect(() => colorChanged(initialState.color), []);
 
   return (
     <div id='quote-box'>    
