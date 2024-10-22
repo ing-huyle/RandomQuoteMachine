@@ -1,0 +1,30 @@
+@import 'transition';
+
+#text {
+  font-family: Raleway, sans-serif;
+  font-size: 1.75em;
+  text-align: center;
+  transition: color $transition;
+}
+  
+#text::before {
+  font-family: 'Font Awesome 6 Free';
+  content: '\f10d  ';
+  font-weight: 900;
+}
+
+.fade {
+  animation: fade $transition;
+}
+
+@keyframes fade {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@media (max-width: 450px) {
+  #text {
+    font-size: 1.4em;
+  }
+}
